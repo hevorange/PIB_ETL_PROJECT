@@ -41,6 +41,11 @@ def transform(df):
     USD (Millions) to USD (Billions) rounding to 2 decimal places.
     The function returns the transformed dataframe.'''
 
+    GDP_list = df["GDP_USD_millions"].tolist()
+    GDP_list = [float("".join(x.split(','))) for x in GDP_list]
+    GDP_list = [np.round(x/1000,2) for x in GDP_list]
+    df["GDP_USD_millions"] = GDP_list
+    df=df.rename(columns = {"GDP_USD_millions":"GDP_USD_billions"})
     return df
 
 def load_to_csv(df, csv_path):
