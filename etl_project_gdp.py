@@ -12,7 +12,7 @@ url = 'https://web.archive.org/web/20230902185326/https://en.wikipedia.org/wiki/
 table_attribs= ['Country', 'GDP_USD_millions']
 db_name= 'World_Economies.db'
 table_name = 'Countries_by_GDP'
-csv_path ='Countries_by_GDP.csv'
+csv_path ='./Countries_by_GDP.csv'
 
 def extract(url, table_attribs):
     ''' This function extracts the required
@@ -69,6 +69,12 @@ def run_query(query_statement, sql_connection):
 
 def log_progress(message):
     ''' This function logs the mentioned message at a given stage of the code execution to a log file. Function returns nothing'''
+    timestamp_format= '%Y-%h-%d-%H:%M:%S'
+    now = datetime.now()
+    timestamp = now.strftime(timestamp_format)
+
+    with open('./etl_project_log.txt','a') as f:
+        f.write(f"{timestamp}, {message} \n")
 
 ''' Here, you define the required entities and call the relevant 
 functions in the correct order to complete the project. Note that this
