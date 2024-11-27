@@ -63,6 +63,9 @@ def load_to_db(df, sql_connection, table_name):
 def run_query(query_statement, sql_connection):
     ''' This function runs the stated query on the database table and
     prints the output on the terminal. Function returns nothing. '''
+    print(query_statement)
+    query_output = pd.read_sql(query_statement, sql_connection)
+    print(query_output)
 
 def log_progress(message):
     ''' This function logs the mentioned message at a given stage of the code execution to a log file. Function returns nothing'''
